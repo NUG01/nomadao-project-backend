@@ -14,4 +14,11 @@ class BalanceController extends Controller
         $user->save();
         return response()->json('Balance updated successfuly!');
     }
+    public function withdraw(Request $request)
+    {
+        $user=User::where('id', 1)->first();
+        $user->balance=($user->balance)-($request->amount);
+        $user->save();
+        return response()->json($user->balance);
+    }
 }

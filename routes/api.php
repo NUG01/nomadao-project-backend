@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(UserController::class)->prefix('user')->group(function () {
-	Route::get('/', 'index')->name('user.index');
+Route::controller(UserController::class)->group(function () {
+	Route::get('/user', 'index')->name('user.index');
 });
 Route::controller(BalanceController::class)->group(function () {
 	Route::post('/update-balance', 'updateBalance')->name('balance.update');
+	Route::post('/withdraw', 'withdraw')->name('balance.withdraw');
+});
+
+Route::controller(StripeController::class)->group(function () {
+	Route::post('/create-checkout-session', 'checkoutSession')->name('checkout.session');
+	Route::get('/success', 'success')->name('checkout.success');
+	Route::get('/cancel', 'cancel')->name('checkout.cancel');
 });
