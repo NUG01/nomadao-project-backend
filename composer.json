@@ -11,6 +11,7 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "stephenjude/laravel-wallet": "^0.0.6",
         "stripe/stripe-php": "^10.3"
     },
     "require-dev": {
