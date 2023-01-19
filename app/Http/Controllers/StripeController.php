@@ -44,11 +44,11 @@ class StripeController extends Controller
         $toBeConfirmed->deactivated=1;
         $user->save();
         $toBeConfirmed->save();
-        return redirect()->away(env('FRONTEND_URL') . '/');
+        return redirect()->away(env('FRONTEND_URL'));
     }
     public function cancel(){
         $toBeDeactivated = Deposit::where('deactivated', 0)->orderBy('id', 'desc')->first();
         $toBeDeactivated->delete();
-        return redirect()->away(env('FRONTEND_URL') . '/');
+        return redirect()->away(env('FRONTEND_URL'));
     }
 }
